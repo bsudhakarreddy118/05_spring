@@ -1,0 +1,22 @@
+server:
+  port: 9000
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/regd_users_db?createDatabaseIfNotExist=true
+    username: root
+    password: p@ss
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+#    ddl-auto: create, update, validate, none
+logging:
+  level:
+    com:
+      learn: WARN
+  file:
+    name: /home/ghouse/00_Trainings/applogs/userservice.log
+  pattern:
+    file: "%d %level %m\n"

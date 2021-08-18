@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="dao1" class="com.learn.di.xml.UserDaoImpl1" primary="true">
+        <constructor-arg name="username" value="USER1"/>
+        <constructor-arg name="password" value="PASS1"/>
+        <constructor-arg name="dbUrl" value="URLONE"/>
+    </bean>
+
+    <bean id="dao2" class="com.learn.di.xml.UserDaoImpl2" autowire-candidate="false">
+        <property name="username" value="USER2"/>
+        <property name="password" value="PASS2"/>
+        <property name="dbUrl" value="URLTWO"/>
+    </bean>
+
+    <bean id="dao" class="com.learn.di.xml.UserDaoImpl2">
+        <property name="username" value="USER3"/>
+        <property name="password" value="PASS3"/>
+        <property name="dbUrl" value="URLTHREE"/>
+    </bean>
+
+    <bean id="loginService" class="com.learn.di.xml.LoginService"
+          scope="singleton"
+          init-method="initialize"
+          destroy-method="destroy"
+          >
+        <property name="dao" ref="dao2" />
+    </bean>
+
+    <bean id="loginService2" class="com.learn.di.xml.LoginService" autowire="byType" lazy-init="true">
+
+    </bean>
+
+
+</beans>
